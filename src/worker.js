@@ -101,11 +101,15 @@ export default {
         const tagline = escapeHtml(data.tagline || "IT Professional | Business Enabler | Photographer | Golfer | Curler | Rock Climber | Hiker | XC Skier");
         const linkedin = escapeHtml(data.linkedin || "https://www.linkedin.com/in/d-pham");
         const hero = escapeHtml(data.hero || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600");
+        const bodyHtml = body ? `<div class="body-content">${escapeHtml(body).replace(/\n/g, '<br>')}</div>` : '';
 
         let galleryHtml = '';
         const images = Array.isArray(data.images) ? data.images : [];
         if (images.length > 0) {
-          const imgs = images.map(src => `<img src="${escapeHtml(src)}" alt="" loading="lazy">`).join('');
+          const sizes = ['span-1', 'span-2', 'span-1', 'span-3', 'span-2', 'span-1'];
+          const imgs = images.map((src, i) => 
+            `<div class="gallery-item ${sizes[i % sizes.length]}"><img src="${escapeHtml(src)}" alt="" loading="lazy"></div>`
+          ).join('');
           galleryHtml = `<section class="gallery"><div class="gallery-grid">${imgs}</div></section>`;
         }
 
@@ -116,6 +120,8 @@ export default {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
   <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="top-bar">
@@ -123,11 +129,13 @@ export default {
   </header>
   <section class="hero" style="background-image: url('${hero}');">
     <div class="hero-overlay"></div>
+    <h1 class="signature">${title}</h1>
   </section>
-  <section class="skills visible">
+  <section class="skills">
     <p class="tagline">${tagline}</p>
   </section>
   <main class="content">
+    ${bodyHtml}
     ${galleryHtml}
   </main>
 </body>
