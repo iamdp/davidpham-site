@@ -19,12 +19,27 @@ function parseFrontmatter(text) {
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { data: {}, body: text };
   const data = {};
+  let currentKey = null;
+  let inList = false;
   match[1].split('\n').forEach(line => {
-    const idx = line.indexOf(':');
-    if (idx > 0) {
-      const key = line.slice(0, idx).trim();
-      const val = line.slice(idx + 1).trim();
-      data[key] = val;
+    const trimmed = line.trim();
+    if (trimmed.startsWith('- ') && inList) {
+      if (!data[currentKey]) data[currentKey] = [];
+      data[currentKey].push(trimmed.slice(2).trim());
+    } else {
+      const idx = trimmed.indexOf(':');
+      if (idx > 0) {
+        const key = trimmed.slice(0, idx).trim();
+        const val = trimmed.slice(idx + 1).trim();
+        if (val === '[]' || val === '') {
+          data[key] = [];
+          currentKey = key;
+          inList = true;
+        } else {
+          data[key] = val;
+          inList = false;
+        }
+      }
     }
   });
   return { data, body: match[2].trim() };
@@ -110,6 +125,15 @@ export default {
         const linkedin = escapeHtml(data.linkedin || "https://www.linkedin.com/in/d-pham");
         const bodyHtml = body ? `<div class="body">${escapeHtml(body).replace(/\n/g, '<br>')}</div>` : '';
 
+        let galleryHtml = '';
+        const images = Array.isArray(data.images) ? data.images : [];
+        if (images.length > 0) {
+          const imgs = images.map(src => 
+            `<img src="${escapeHtml(src)}" alt="" loading="lazy">`
+          ).join('');
+          galleryHtml = `<section class="gallery"><h2>Photos</h2><div class="gallery-grid">${imgs}</div></section>`;
+        }
+
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,6 +148,7 @@ export default {
     <p class="tagline">${tagline}</p>
     ${bodyHtml}
     <a href="${linkedin}" class="linkedin-link" target="_blank" rel="noopener">LinkedIn</a>
+    ${galleryHtml}
   </main>
 </body>
 </html>`;
