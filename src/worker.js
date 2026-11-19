@@ -100,7 +100,7 @@ export default {
         const title = escapeHtml(data.title || "David Pham");
         const tagline = escapeHtml(data.tagline || "IT Professional | Business Enabler | Photographer | Golfer | Curler | Rock Climber | Hiker | XC Skier");
         const linkedin = escapeHtml(data.linkedin || "https://www.linkedin.com/in/d-pham");
-        const hero = escapeHtml(data.hero || "https://lh7-us.googleusercontent.com/sitesv-images-rt/APXyLQfwmF11JHcG0RQhgVTyT0N1oEknN8kWGkmrhn-twpTt_xtVqRvTaonmdRSBiX91iuoFW4UmR48oxjFWrA_n0jfWVtlCqyH8yzSerW_fBEKjP4clqdZGGdKunCI1yECMHqUqQ2GlpVG9p0vRtyPFvyfvTZXNF66sQ6lARQAcI5PuE3Yp2pYU_zKRnrorv05jKj3fbhap1MwY_0tjg8pI_g-HaDgyvQyifJrS0g2c=w1280");
+        const hero = escapeHtml(data.hero || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600");
 
         let galleryHtml = '';
         const images = Array.isArray(data.images) ? data.images : [];
@@ -124,26 +124,19 @@ export default {
   <section class="hero" style="background-image: url('${hero}');">
     <div class="hero-overlay"></div>
   </section>
-  <section class="skills">
+  <section class="skills visible">
     <p class="tagline">${tagline}</p>
   </section>
   <main class="content">
     ${galleryHtml}
   </main>
-  <script>
-    const skills = document.querySelector('.skills');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) skills.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    observer.observe(skills);
-  </script>
 </body>
 </html>`;
 
         return new Response(html, { headers: { "content-type": "text/html;charset=UTF-8" } });
-      } catch (e) {}
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     return env.ASSETS.fetch(request);
