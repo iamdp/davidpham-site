@@ -15,6 +15,29 @@ function renderBody(status, content) {
   return new Blob([html]);
 }
 
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { data: {}, body: text };
+  const data = {};
+  match[1].split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx > 0) {
+      const key = line.slice(0, idx).trim();
+      const val = line.slice(idx + 1).trim();
+      data[key] = val;
+    }
+  });
+  return { data, body: match[2].trim() };
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&')
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .replace(/"/g, '"');
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -71,6 +94,45 @@ export default {
         );
       } catch (err) {
         return new Response(String(err), { status: 500 });
+      }
+    }
+
+    // Dynamic homepage from CMS content
+    if (url.pathname === "/" || url.pathname === "/index.html") {
+      try {
+        const contentRes = await env.ASSETS.fetch(new URL("/content/home.md", url.origin));
+        if (!contentRes.ok) throw new Error("content not found");
+        const text = await contentRes.text();
+        const { data, body } = parseFrontmatter(text);
+
+        const title = escapeHtml(data.title || "David Pham");
+        const tagline = escapeHtml(data.tagline || "");
+        const linkedin = escapeHtml(data.linkedin || "https://www.linkedin.com/in/d-pham");
+        const bodyHtml = body ? `<div class="body">${escapeHtml(body).replace(/\n/g, '<br>')}</div>` : '';
+
+        const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>${title}</h1>
+    <p class="tagline">${tagline}</p>
+    ${bodyHtml}
+    <a href="${linkedin}" class="linkedin-link" target="_blank" rel="noopener">LinkedIn</a>
+  </main>
+</body>
+</html>`;
+
+        return new Response(html, {
+          headers: { "content-type": "text/html;charset=UTF-8" },
+        });
+      } catch (e) {
+        // fall through to static assets if content missing
       }
     }
 
