@@ -3,4 +3,4 @@ title: davidpham.ca
 tagline: davidpham.ca
 linkedin: https://www.linkedin.com/in/d-phamX
 ---
-Test
+IT Professional | Business Enabler | Photographer | Golfer | Rock Climber | Hiker | Skier
