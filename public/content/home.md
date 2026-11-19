@@ -2,6 +2,7 @@
 title: David Pham
 tagline: IT Professional | Business Enabler | Photographer | Golfer | Curler | Rock Climber | Hiker | XC Skier
 linkedin: https://www.linkedin.com/in/d-pham
+hero: https://lh7-us.googleusercontent.com/sitesv-images-rt/APXyLQfwmF11JHcG0RQhgVTyT0N1oEknN8kWGkmrhn-twpTt_xtVqRvTaonmdRSBiX91iuoFW4UmR48oxjFWrA_n0jfWVtlCqyH8yzSerW_fBEKjP4clqdZGGdKunCI1yECMHqUqQ2GlpVG9p0vRtyPFvyfvTZXNF66sQ6lARQAcI5PuE3Yp2pYU_zKRnrorv05jKj3fbhap1MwY_0tjg8pI_g-HaDgyvQyifJrS0g2c=w1280
 images:
   - https://lh7-us.googleusercontent.com/sitesv-images-rt/APXyLQcsSIUh0whd7eSt5TKCQiI6UuUzoSE8QyZrLb6zoMZ-AAOK4m_z3XJmLEgtBtcJFe63C8HwLgVzolfX2DWkJekez1dBAVCwsY29Avfuw6KabA4LjpGLuoa24Y7jeGLzxoawrsI0NwYTXT6PSbfZllAzio-JTgmfC7lm-0qE9rZHSDz85wU2dDiRfw40UCfVdaA3O7HwHBJ5MgtA2uKlkm2kK1KapqMTzJ9pjALz6Jg=w1280
   - https://lh7-us.googleusercontent.com/sitesv-images-rt/APXyLQetWFfbwyEg9rXClkVySuMJd3x6OGbYolH2QHBcpM3bb8nxCRuFj6VeT8rOpvMrAiC0w2JjXsjHrrbHlDIAcowMDou5CqEKhd-8xblnqN1t-yBWDRmkiHx_ayXfc0bVfplr0HBsapoFJLBV7Fi6IOPWwOIS-mfCH1XjyV1n8fRISooka9v-Ljieqahvs2eTZKURIEGx0IDPCJ40Lc4_DMb3QkFCKaVkLV7WFJ1G=w1280
