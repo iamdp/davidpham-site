@@ -6,8 +6,8 @@ backend:
   base_url: https://davidpham-site.email-427.workers.dev
   auth_endpoint: /api/auth
 
-media_folder: "static/images"
-public_folder: "/images"
+media_folder: "public/static/images"
+public_folder: "/static/images"
 
 collections:
   - name: "pages"
@@ -15,7 +15,7 @@ collections:
     files:
       - label: "Home"
         name: "home"
-        file: "content/home.md"
+        file: "public/content/home.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "David Pham" }
           - { label: "Tagline", name: "tagline", widget: "string", default: "IT Professional | Business Enabler | Photographer | Golfer | Curler | Rock Climber | Hiker | XC Skier" }
@@ -24,7 +24,7 @@ collections:
 
   - name: "galleries"
     label: "Photo Galleries"
-    folder: "content/galleries"
+    folder: "public/content/galleries"
     create: true
     slug: "{{slug}}"
     fields:
