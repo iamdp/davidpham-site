@@ -1,6 +1,6 @@
 ---
 title: David Pham
-tagline: IT Professional | Business Enabler | Photographer | Golfer | Curler | Rock Climber | Hiker | XC Skier
+tagline: davidpham
 linkedin: https://www.linkedin.com/in/d-pham
 hero: https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600
 images:
@@ -11,5 +11,6 @@ images:
   - https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800
   - https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800
 ---
+IT Professional | Business Enabler | Sustainability
 
-Welcome to my site. I enjoy photography, the outdoors, and building useful things.
+Photographer | Golfer | Curler | Rock Climber | Hiker | Skier
